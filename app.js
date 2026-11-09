@@ -713,14 +713,7 @@ function calculateResults() {
     item => !item.correct && item.fontSize >= 95
   ).length;
 
-  const confusionPairs = [
-    ["O", "Q"],
-    ["C", "G"],
-    ["P", "F"],
-    ["B", "D"],
-    ["I", "T"],
-    ["V", "Y"]
-  ];
+
 
   const similarErrors = all.filter(item => {
 
