@@ -1,166 +1,528 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  --primary: #123c69;
+  --primary-light: #1b659c;
+  --secondary: #13a994;
+  --turquoise: #55c5ed;
+  --background: #f2f6fb;
+  --white: #ffffff;
+  --text: #183451;
+  --muted: #71849a;
+  --border: #e4ebf3;
+  --success: #159b68;
+  --warning: #ed9c35;
+  --danger: #e05252;
+  --shadow: 0 12px 35px rgba(18,60,105,.08);
+}
+
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #172b4d;
+  min-height: 100vh;
+  font-family: 'Inter', Arial, sans-serif;
+  background:
+    radial-gradient(circle at top right, #dceefa 0, transparent 35%),
+    var(--background);
+  color: var(--text);
 }
 
-button, input {
-  font: inherit;
+button,
+input {
+  font-family: inherit;
 }
+
+/* ANA KAPSAYICI */
 
 .container {
-  width: min(95%, 850px);
+  width: min(94%, 950px);
   margin: 35px auto;
-  padding: 25px;
-  background: white;
-  border-radius: 18px;
-  box-shadow: 0 5px 25px #00000012;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  box-shadow: var(--shadow);
   text-align: center;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
 }
 
-h1 {
-  color: #123c69;
-}
-
-h2 {
-  color: #245b8f;
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--turquoise),
+    var(--secondary)
+  );
 }
 
 .hidden {
   display: none !important;
 }
 
-button {
-  border: none;
-  padding: 14px 25px;
-  border-radius: 10px;
-  background: #1264a3;
-  color: white;
-  cursor: pointer;
-  margin: 8px;
-  font-weight: bold;
-}
+/* BAŞLIKLAR */
 
-button:hover {
-  background: #0c4777;
-}
-
-button:disabled {
-  background: #999;
-  cursor: not-allowed;
-}
-
-input {
-  padding: 14px;
-  width: 100%;
-  max-width: 300px;
-  border: 2px solid #ccd6e0;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 22px;
-  text-transform: uppercase;
-}
-
-.role-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.role-buttons button {
-  min-width: 180px;
-  padding: 25px;
-  font-size: 20px;
-}
-
-.timer {
-  font-size: 42px;
-  font-weight: bold;
-  color: #e07816;
-  margin: 20px;
-}
-
-.letter {
-  font-family: Arial, sans-serif;
+h1 {
+  color: var(--primary);
+  font-size: 32px;
   font-weight: 900;
-  color: #000;
-  line-height: 1;
-  margin: 25px auto;
-  min-height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.status {
-  padding: 12px;
-  background: #edf4fb;
-  border-radius: 10px;
+  letter-spacing: -1px;
   margin: 15px 0;
 }
 
-.warning {
-  background: #fff4dd;
-  color: #805400;
+h2 {
+  color: var(--primary-light);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+h3 {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* BUTONLAR */
+
+button {
+  border: none;
+  padding: 15px 25px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-light),
+    var(--primary)
+  );
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 8px;
+  transition: .25s ease;
+  box-shadow: 0 5px 14px rgba(18,60,105,.15);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 20px rgba(18,60,105,.22);
+}
+
+button:active:not(:disabled) {
+  transform: scale(.97);
+}
+
+button:disabled {
+  background: #b8c4d1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ROL SEÇİMİ */
+
+#roleScreen {
+  padding: 35px 10px;
+}
+
+#roleScreen h1 {
+  font-size: 42px;
+  letter-spacing: -2px;
+}
+
+#roleScreen h1::before {
+  content: "◉ ";
+  color: var(--secondary);
+}
+
+#roleScreen > p {
+  font-size: 16px;
+  margin-bottom: 35px;
+}
+
+.role-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 650px;
+  margin: 35px auto;
+}
+
+.role-buttons button {
+  min-height: 190px;
+  border-radius: 20px;
+  padding: 25px;
+  font-size: 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+#doctorRole {
+  background: linear-gradient(145deg, #1d689e, #123c69);
+}
+
+#patientRole {
+  background: linear-gradient(145deg, #22bca4, #128b82);
+}
+
+#doctorRole::before {
+  content: "⚕";
+  font-size: 42px;
+}
+
+#patientRole::before {
+  content: "♙";
+  font-size: 42px;
+}
+
+/* DOKTOR PANELİ */
+
+#doctorScreen {
+  padding: 10px;
+}
+
+#doctorScreen h1 {
+  font-size: 34px;
+}
+
+#doctorStatus,
+.status {
+  background: #edf5fc;
+  border: 1px solid #dbeaf6;
+  color: var(--primary);
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+#startTest {
+  background: linear-gradient(135deg, #17ae9c, #108576);
+  min-width: 200px;
+}
+
+#qrArea {
+  background: #f7faff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 430px;
+}
+
+#qrcode {
+  background: white;
   padding: 15px;
-  border-radius: 10px;
-  margin: 12px 0;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 20px auto;
+}
+
+#qrcode img,
+#qrcode canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+#doctorId {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+
+/* GERİ SAYIM */
+
+.timer {
+  font-size: 55px;
+  font-weight: 900;
+  color: var(--secondary);
+  margin: 20px auto;
+  font-variant-numeric: tabular-nums;
+}
+
+#doctorTimer,
+#patientTimer {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  border: 7px solid #d8f2ee;
+  background: #effaf8;
+}
+
+/* HARF GÖSTERİMİ */
+
+.letter {
+  min-height: 210px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  margin: 20px auto;
+  background: #ffffff;
+  border: 2px dashed #dce5ed;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#doctorLetter {
+  max-width: 500px;
+}
+
+#patientLetter {
+  min-height: 230px;
+  max-width: 500px;
+  border: 2px solid #e4ebf3;
+}
+
+/* HASTA BİLGİLENDİRME */
+
+#patientConsent {
+  padding: 15px;
+}
+
+.warning {
+  background: #fff8e9;
+  border: 1px solid #f6dfad;
+  color: #805a17;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 600px;
   text-align: left;
 }
 
-.success {
-  color: #16834b;
-  font-weight: bold;
+.warning p {
+  color: #805a17;
 }
 
-.error {
-  color: #c0392b;
-  font-weight: bold;
+#consentCheck {
+  accent-color: var(--secondary);
+  width: 19px !important;
+  height: 19px;
+  vertical-align: middle;
+  cursor: pointer;
 }
+
+/* KAMERA */
 
 #reader {
   width: 100%;
   max-width: 400px;
-  margin: 15px auto;
+  margin: 20px auto;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.result {
-  background: #edf4fb;
+#reader video {
   border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
+}
+
+#cameraStatus {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* HASTA TEST EKRANI */
+
+#patientTest {
+  padding: 10px;
+}
+
+#patientPhase {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+#patientAnswer {
+  width: 100%;
+  max-width: 280px;
+  height: 60px;
+  border: 2px solid #d7e3ee;
+  border-radius: 14px;
+  outline: none;
+  font-size: 25px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--primary);
+  text-transform: uppercase;
+  transition: .2s;
+}
+
+#patientAnswer:focus {
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 4px #13a99420;
+}
+
+#submitAnswer {
+  min-width: 180px;
+  background: linear-gradient(135deg, #17ae9c, #108576);
+}
+
+/* SONUÇLAR */
+
+.result {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 25px;
+  margin: 25px auto;
+  box-shadow: var(--shadow);
+  text-align: center;
 }
 
 .result h2 {
+  color: var(--primary);
   font-size: 27px;
 }
 
-@media(max-width: 600px) {
+.result p {
+  padding: 8px;
+  margin: 7px 0;
+  background: #f4f8fc;
+  border-radius: 9px;
+}
+
+.result hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+.result .warning {
+  background: #fff8e9;
+  border: 1px solid #f6dfad;
+  font-size: 13px;
+}
+
+.success {
+  color: var(--success);
+  font-weight: 800;
+}
+
+.error {
+  color: var(--danger);
+  font-weight: 800;
+}
+
+/* DURUM VE İLERLEME */
+
+#doctorProgress,
+#patientProgress {
+  color: var(--primary);
+  font-weight: 700;
+  margin: 15px;
+}
+
+#questionTimer {
+  font-weight: 700;
+}
+
+/* MOBİL UYUMLULUK */
+
+@media (max-width: 600px) {
+
+  body {
+    padding: 0;
+  }
+
   .container {
-    margin: 10px auto;
-    padding: 16px;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 22px 15px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
   }
 
-  .letter {
-    min-height: 130px;
+  h1 {
+    font-size: 27px;
   }
 
-  .timer {
-    font-size: 35px;
+  #roleScreen h1 {
+    font-size: 34px;
   }
 
   .role-buttons {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .role-buttons button {
+    min-height: 145px;
     width: 100%;
+    margin: 0;
+  }
+
+  .timer {
+    font-size: 43px;
+  }
+
+  #doctorTimer,
+  #patientTimer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .letter {
+    min-height: 165px;
+  }
+
+  #patientLetter {
+    min-height: 180px;
+  }
+
+  button {
+    min-height: 48px;
+  }
+
+  #patientAnswer {
+    font-size: 24px;
+  }
+
+  .result {
+    padding: 17px;
+  }
+}
+
+/* MASAÜSTÜ */
+
+@media (min-width: 900px) {
+  .container {
+    margin-top: 55px;
+    padding: 40px;
+  }
+
+  #roleScreen {
+    padding: 60px 20px;
   }
 }
