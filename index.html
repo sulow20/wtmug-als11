@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c69">
+
+  <title>Görme Testi PWA</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style.css">
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="https://unpkg.com/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <section id="roleScreen">
+      <h1>Görme Testi</h1>
+      <p>Devam etmek için rolünüzü seçiniz.</p>
+
+      <div class="role-buttons">
+        <button id="doctorRole">Doktor</button>
+        <button id="patientRole">Hasta</button>
+      </div>
+    </section>
+
+    <!-- DOKTOR EKRANI -->
+
+    <section id="doctorScreen" class="hidden">
+      <h1>Doktor Paneli</h1>
+
+      <div id="doctorStatus" class="status">
+        Hasta bağlantısı bekleniyor.
+      </div>
+
+      <button id="startTest">Testi Başlat</button>
+
+      <div id="qrArea" class="hidden">
+        <h3>Hasta QR kodunu okutsun</h3>
+        <div id="qrcode"></div>
+        <p id="doctorId"></p>
+      </div>
+
+      <div id="doctorTest" class="hidden">
+        <h2 id="doctorPhase">Hazırlanıyor</h2>
+        <div id="doctorTimer" class="timer">60</div>
+        <div id="doctorLetter" class="letter"></div>
+        <p id="doctorQuestion"></p>
+        <p id="doctorProgress"></p>
+      </div>
+
+      <div id="doctorResult" class="result hidden"></div>
+    </section>
+
+    <!-- HASTA ONAY EKRANI -->
+
+    <section id="patientConsent" class="hidden">
+      <h1>Hasta Bilgilendirme</h1>
+
+      <div class="warning">
+        <p>• Her harf için 5 saniyeniz vardır.</p>
+        <p>• Sadece Büyük Harfler kullanılmıştır (O/0 karışıklığına dikkat).</p>
+        <p>• Test sırasında telefonunuzu sabit tutunuz.</p>
+        <p>• Test sonuçları yalnızca eğitim amaçlı simülasyondur.</p>
+        <p>• Bu uygulama tıbbi teşhis veya tedavi amacı taşımaz.</p>
+      </div>
+
+      <label>
+        <input type="checkbox" id="consentCheck" style="width:auto">
+        Okudum, anladım.
+      </label>
+
+      <br><br>
+
+      <button id="startCamera" disabled>
+        Kamerayı Başlat
+      </button>
+
+      <div id="reader"></div>
+      <p id="cameraStatus"></p>
+    </section>
+
+    <!-- HASTA TEST EKRANI -->
+
+    <section id="patientTest" class="hidden">
+      <h1>Görme Testi</h1>
+
+      <div id="patientPhase" class="status"></div>
+
+      <div id="patientTimer" class="timer">60</div>
+
+      <div id="patientLetter" class="letter"></div>
+
+      <div id="questionTimer" class="status">
+        Harf bekleniyor.
+      </div>
+
+      <input
+        id="patientAnswer"
+        type="text"
+        maxlength="1"
+        autocomplete="off"
+        placeholder="Harf giriniz"
+        disabled
+      >
+
+      <br>
+
+      <button id="submitAnswer" disabled>
+        Cevabı Gönder
+      </button>
+
+      <p id="patientProgress"></p>
+      <p id="patientConnection"></p>
+    </section>
+
+    <!-- HASTA SONUÇ EKRANI -->
+
+    <section id="patientResult" class="result hidden"></section>
+
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

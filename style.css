@@ -1,0 +1,166 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172b4d;
+}
+
+button, input {
+  font: inherit;
+}
+
+.container {
+  width: min(95%, 850px);
+  margin: 35px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 5px 25px #00000012;
+  text-align: center;
+}
+
+h1 {
+  color: #123c69;
+}
+
+h2 {
+  color: #245b8f;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  border: none;
+  padding: 14px 25px;
+  border-radius: 10px;
+  background: #1264a3;
+  color: white;
+  cursor: pointer;
+  margin: 8px;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #0c4777;
+}
+
+button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+input {
+  padding: 14px;
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #ccd6e0;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.role-buttons button {
+  min-width: 180px;
+  padding: 25px;
+  font-size: 20px;
+}
+
+.timer {
+  font-size: 42px;
+  font-weight: bold;
+  color: #e07816;
+  margin: 20px;
+}
+
+.letter {
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  color: #000;
+  line-height: 1;
+  margin: 25px auto;
+  min-height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status {
+  padding: 12px;
+  background: #edf4fb;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.warning {
+  background: #fff4dd;
+  color: #805400;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 12px 0;
+  text-align: left;
+}
+
+.success {
+  color: #16834b;
+  font-weight: bold;
+}
+
+.error {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+#reader {
+  width: 100%;
+  max-width: 400px;
+  margin: 15px auto;
+}
+
+.result {
+  background: #edf4fb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.result h2 {
+  font-size: 27px;
+}
+
+@media(max-width: 600px) {
+  .container {
+    margin: 10px auto;
+    padding: 16px;
+  }
+
+  .letter {
+    min-height: 130px;
+  }
+
+  .timer {
+    font-size: 35px;
+  }
+
+  .role-buttons {
+    flex-direction: column;
+  }
+
+  .role-buttons button {
+    width: 100%;
+  }
+}
